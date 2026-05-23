@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 5%;
+    --foreground: 0 0% 96%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 96%;
+    --popover: 0 0% 13%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 161 74% 25%;
+    --primary-foreground: 0 0% 96%;
+    --secondary: 0 0% 13%;
+    --secondary-foreground: 0 0% 96%;
+    --muted: 0 0% 13%;
+    --muted-foreground: 0 0% 53%;
+    --accent: 161 50% 20%;
+    --accent-foreground: 0 0% 96%;
+    --destructive: 0 50% 40%;
+    --destructive-foreground: 0 0% 96%;
+    --border: 0 0% 18%;
+    --input: 0 0% 13%;
+    --ring: 161 74% 25%;
+    --radius: 0.5rem;
+    --chart-1: 161 74% 38%;
+    --chart-2: 210 70% 55%;
+    --chart-3: 38 85% 40%;
+    --chart-4: 241 50% 66%;
+    --chart-5: 0 0% 53%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #0D0D0D;
+    color: #F5F5F5;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Syne', 'DM Sans', system-ui, sans-serif;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background: rgba(15, 110, 86, 0.4);
+  }
+
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: #0D0D0D; }
+  ::-webkit-scrollbar-thumb { background: #2E2E2E; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #3E3E3E; }
+}
+
+@layer utilities {
+  .font-display { font-family: 'Syne', system-ui, sans-serif; }
+  .font-mono { font-family: 'JetBrains Mono', 'Courier New', monospace; }
+  .surface { background-color: #1A1A1A; }
+  .surface-elevated { background-color: #222222; }
+  .glow-brand { box-shadow: 0 0 24px rgba(15, 110, 86, 0.2); }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .animate-fade-in { animation: fadeIn 0.3s ease-out; }
+  .animate-slide-up { animation: slideUp 0.4s ease-out; }
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
