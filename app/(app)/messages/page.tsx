@@ -16,7 +16,7 @@ const CHANNELS: { id: string; label: string; orbit?: OrbitType }[] = [
 export default function MessagesPage() {
   const { member } = useAuth();
   const [activeChannel, setActiveChannel] = useState('general');
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<(Message & { sender?: Member })[]>([]);
   const [members, setMembers] = useState<Member[]>([]);
   const [content, setContent] = useState('');
   const [sending, setSending] = useState(false);
