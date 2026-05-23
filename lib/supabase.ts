@@ -9,6 +9,8 @@ export type OrbitType = 'FORGE' | 'LABS' | 'CORE' | 'OPEN' | 'INTELLIGENCE';
 export type MemberRole = 'MEMBER' | 'ORBIT_LEAD' | 'NETWORK_COUNCIL' | 'ARCHITECTURE_BOARD';
 export type TaskStatus = 'PENDING' | 'IN_REVIEW' | 'COMPLETE';
 export type PromotionStatus = 'PENDING' | 'APPROVED' | 'DEFERRED';
+export type OnboardingStage = 'IDENTITY' | 'TRAINING' | 'ORIENTATION' | 'AGREEMENT' | 'APPROVAL' | 'COMPLETE';
+export type DocumentStatus = 'PENDING' | 'VERIFIED' | 'REJECTED';
 
 export interface Member {
   id: string;
@@ -20,6 +22,43 @@ export interface Member {
   contribution_score: number;
   skills: string[];
   joined_at: string;
+  onboarding_stage: OnboardingStage;
+  onboarding_complete: boolean;
+}
+
+export interface Document {
+  id: string;
+  member_id: string;
+  category: string;
+  document_type: string;
+  status: DocumentStatus;
+  storage_path: string;
+  file_name: string;
+  uploaded_by: string | null;
+  uploaded_at: string;
+  notes: string | null;
+}
+
+export interface Agreement {
+  id: string;
+  title: string;
+  type: string;
+  version: number;
+  orbit: OrbitType | null;
+  required_level: number;
+  content: string;
+  created_by: string | null;
+  created_at: string;
+}
+
+export interface AgreementAcceptance {
+  id: string;
+  agreement_id: string;
+  member_id: string;
+  version: number;
+  accepted_at: string;
+  signature: string | null;
+  notes: string | null;
 }
 
 export interface Task {

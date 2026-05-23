@@ -14,6 +14,24 @@ export async function signUp(email: string, password: string, name: string, orbi
     return { error: authError?.message ?? 'Registration failed' };
   }
 
+  // Ensure a member profile exists for the new auth user.
+  // Try an upsert so re-runs or missing trigger cases are handled gracefully.
+  try {
+    await supabase.from('members').upsert({
+      id: authData.user.id,
+      name,
+      email,
+      orbit: orbit as any,
+      level: 0,
+      role: 'MEMBER',
+      contribution_score: 0,
+      skills: [],
+      joined_at: new Date().toISOString(),
+    });
+  } catch (e) {
+    // ignore errors here — the database trigger should create the profile server-side.
+  }
+
   return { user: authData.user };
 }
 

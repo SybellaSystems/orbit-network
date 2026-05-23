@@ -13,10 +13,16 @@ const CHANNELS: { id: string; label: string; orbit?: OrbitType }[] = [
   { id: 'orbit-open', label: 'Open', orbit: 'OPEN' }, { id: 'orbit-intelligence', label: 'Intelligence', orbit: 'INTELLIGENCE' },
 ];
 
+// Extend Message with resolved sender/recipient so setMessages accepts the join shape.
+type MessageWithSender = Message & {
+  sender?: Member;
+  recipient?: Member;
+};
+
 export default function MessagesPage() {
   const { member } = useAuth();
   const [activeChannel, setActiveChannel] = useState('general');
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<MessageWithSender[]>([]);
   const [members, setMembers] = useState<Member[]>([]);
   const [content, setContent] = useState('');
   const [sending, setSending] = useState(false);
@@ -29,8 +35,32 @@ export default function MessagesPage() {
   }, [member]);
 
   async function loadMessages() {
-    const { data } = await supabase.from('messages').select('*, sender:members(*)').eq('channel_id', activeChannel).order('sent_at', { ascending: true }).limit(50);
-    setMessages(data ?? []);
+    const { data, error } = await supabase
+      .from('messages')
+      .select(`
+        id,
+        channel_id,
+        content,
+        sent_at,
+        sender_id,
+        recipient_id,
+        sender:members!messages_sender_id_fkey(id, name, email),
+        recipient:members!messages_recipient_id_fkey(id, name, email)
+      `)
+      .eq('channel_id', activeChannel)
+      .order('sent_at', { ascending: true })
+      .limit(50);
+
+    if (error) console.error('loadMessages error', error);
+
+    // Supabase may return joined rows as arrays; normalize to single objects.
+    const normalized: MessageWithSender[] = (data ?? []).map((m: any) => ({
+      ...m,
+      sender: Array.isArray(m.sender) ? m.sender[0] : m.sender,
+      recipient: Array.isArray(m.recipient) ? m.recipient[0] : m.recipient,
+    }));
+
+    setMessages(normalized);
   }
 
   useEffect(() => {

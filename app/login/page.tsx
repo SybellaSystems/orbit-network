@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { signIn, signUp } from '@/lib/auth';
-import { Hexagon, Eye, EyeOff, AlertCircle } from 'lucide-react';
+import { Eye, EyeOff, AlertCircle } from 'lucide-react';
 
 type Mode = 'login' | 'register';
 
@@ -61,10 +61,10 @@ export default function LoginPage() {
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex flex-col items-center gap-3">
             <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(15,110,86,0.2) 0%, rgba(29,158,117,0.1) 100%)', border: '1px solid rgba(15, 110, 86, 0.4)' }}>
-              <Hexagon size={20} color="#1D9E75" strokeWidth={2} />
+              <img src="/brand-logo.png" alt="Cogniforge logo" className="w-10 h-10 rounded-lg object-cover" />
             </div>
             <div>
-              <div className="text-xl font-bold text-[#F5F5F5]" style={{ fontFamily: 'Syne, system-ui, sans-serif' }}>Orbit Network</div>
+              <div className="text-xl font-bold text-[#F5F5F5]" style={{ fontFamily: 'Syne, system-ui, sans-serif' }}>Cogniforge</div>
               <div className="text-xs text-[#888888] mt-0.5">Sybella Systems Ltd</div>
             </div>
           </Link>
@@ -138,7 +138,7 @@ export default function LoginPage() {
             </button>
           </form>
         </div>
-        <p className="text-center text-xs text-[#444444] mt-6" style={{ fontFamily: 'DM Sans, system-ui, sans-serif' }}>Orbit Network is invite-only. Access requires prior approval.</p>
+        <p className="text-center text-xs text-[#444444] mt-6" style={{ fontFamily: 'DM Sans, system-ui, sans-serif' }}>Cogniforge is invite-only. Access requires prior approval.</p>
       </div>
     </div>
   );

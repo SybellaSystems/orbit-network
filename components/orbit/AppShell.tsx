@@ -9,7 +9,7 @@ import { MemberAvatar } from './MemberAvatar';
 import { cn } from '@/lib/utils';
 import {
   LayoutDashboard, CheckSquare, MessageSquare, User, Settings, Users,
-  ShieldCheck, LogOut, ChevronRight, Hexagon, Menu, X, TrendingUp,
+  ShieldCheck, LogOut, ChevronRight, Menu, X, TrendingUp,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -71,10 +71,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     <aside className="flex flex-col h-full bg-[#111111] border-r border-[#1E1E1E]">
       <div className="px-5 py-5 border-b border-[#1E1E1E]">
         <Link href="/dashboard" className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-[#0F6E56]/20 border border-[#0F6E56]/40">
-            <Hexagon size={14} className="text-[#1D9E75]" strokeWidth={2} />
-          </div>
-          <span className="font-display font-bold text-[#F5F5F5] text-base tracking-tight">Orbit Network</span>
+          <img src="/brand-logo.png" alt="Cogniforge logo" className="w-7 h-7 rounded-lg bg-[#0F6E56]/20 border border-[#0F6E56]/40 object-cover" />
+          <span className="font-display font-bold text-[#F5F5F5] text-base tracking-tight">Cogniforge</span>
         </Link>
       </div>
       {member && (
@@ -129,8 +127,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <div className="flex-1 flex flex-col overflow-hidden">
         <div className="md:hidden flex items-center justify-between px-4 py-3 border-b border-[#1E1E1E] bg-[#111111]">
           <Link href="/dashboard" className="flex items-center gap-2">
-            <Hexagon size={16} className="text-[#1D9E75]" />
-            <span className="font-display font-bold text-[#F5F5F5] text-sm">Orbit Network</span>
+            <img src="/brand-logo.png" alt="Cogniforge logo" className="w-6 h-6 rounded-lg object-cover" />
+            <span className="font-display font-bold text-[#F5F5F5] text-sm">Cogniforge</span>
           </Link>
           <button onClick={() => setMobileOpen(!mobileOpen)} className="p-1.5 text-[#888888] hover:text-[#F5F5F5]">
             {mobileOpen ? <X size={18} /> : <Menu size={18} />}
