@@ -49,13 +49,8 @@ test('auth failure (401) retries then throws', async () => {
     };
   })();
 
-  await assert.rejects(
-    () => pushToVacp({ payload: { hello: 'world' } }),
-    (err) => {
-      const msg = err?.message ?? String(err);
-      return msg.includes('401');
-    }
-  );
+  await assert.rejects(() => pushToVacp({ payload: { hello: 'world' } }), /VAC-P push failed with 401/);
+
   assert.ok(callCount >= 1, 'should attempt at least once');
 
 });

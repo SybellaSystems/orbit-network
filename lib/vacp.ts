@@ -60,7 +60,12 @@ export type PushToVacpInput = {
   projectId?: string;
   integrationId?: string;
   platform?: string;
+
+  // Retry/backoff tuning (useful for tests)
+  retryDelayBaseMs?: number;
+  retryDelayMaxMs?: number;
 };
+
 
 export async function pushToVacp(input: PushToVacpInput): Promise<VacpPushResult> {
   const baseUrl = getEnv('VAC_P_BASE_URL');
@@ -98,11 +103,15 @@ export async function pushToVacp(input: PushToVacpInput): Promise<VacpPushResult
   let attempt = 0;
   let lastError: unknown;
 
+  // Retry only for auth/notfound/server errors.
+  const retryDelayBaseMs = input.retryDelayBaseMs ?? 500;
+  const retryDelayMaxMs = input.retryDelayMaxMs ?? 8000;
+
   while (attempt <= maxRetries) {
     try {
       const res = await fetch(url, {
-
         method: 'POST',
+
         headers: {
           'Content-Type': 'application/json',
           'x-vacp-secret': secret,
