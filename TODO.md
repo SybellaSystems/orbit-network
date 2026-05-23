@@ -9,12 +9,16 @@
 - [x] Created branch: `blackboxai/orbit-hr-council`
 
 ## Step 3 — Implement Council HR Console
-- [ ] Add a tabbed UI into `app/(app)/admin/page.tsx`
+- [ ] Add a tabbed HR console UI into `app/(app)/admin/page.tsx` with required sections
   - Recruitment pipelines (stages)
   - Onboarding tasks + strict gating overview
-  - Agreement engine placeholders (create agreement types, link to milestones/levels)
-  - Workforce management (assignments, promotions unlock checks)
+  - Agreement engine (UI + audit log placeholders)
+  - Workforce management (assignments + promotions unlock checks UI)
 - [ ] Implement Supabase-backed actions required by the UI (or UI-only if backend tables/functions are missing)
+- [ ] Fix Vercel export/build errors (missing server-side/static constraints) once build logs are available
+
+
+
 
 ## Step 4 — Rebrand/AI platform name work
 - [ ] (Not modifying code yet) Prepare rebrand plan + name options
