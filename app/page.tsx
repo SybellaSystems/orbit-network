@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, Hexagon, Zap, Users, TrendingUp, Code2, Star } from 'lucide-react';
+import { ArrowRight, Zap, Users, TrendingUp, Code2, Star } from 'lucide-react';
 
 const ORBITS = [
   { name: 'Forge', description: 'Learning & onboarding for new builders entering the network.', color: '#1D9E75' },
@@ -21,10 +21,8 @@ export default function LandingPage() {
       <nav className="border-b border-[#1E1E1E] bg-[#0D0D0D]/90 backdrop-blur-sm sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-4 md:px-8 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-[#0F6E56]/20 border border-[#0F6E56]/40">
-              <Hexagon size={14} className="text-[#1D9E75]" strokeWidth={2} />
-            </div>
-            <span className="font-bold text-base tracking-tight text-[#F5F5F5]" style={{ fontFamily: 'Syne, system-ui, sans-serif' }}>Orbit Network</span>
+            <img src="/brand-logo.png" alt="Cogniforge logo" className="w-7 h-7 rounded-lg bg-[#0F6E56]/10 border border-[#0F6E56]/40 object-cover" />
+            <span className="font-bold text-base tracking-tight text-[#F5F5F5]" style={{ fontFamily: 'Syne, system-ui, sans-serif' }}>Cogniforge</span>
           </div>
           <Link href="/login" className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-150 bg-[#0F6E56]/20 border border-[#0F6E56]/40 text-[#1D9E75] hover:bg-[#0F6E56]/30">
             Sign in <ArrowRight size={13} />
@@ -43,7 +41,7 @@ export default function LandingPage() {
             The structured ecosystem<br />for <span style={{ color: '#1D9E75' }}>AI builders</span>
           </h1>
           <p className="text-[#888888] text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed" style={{ fontFamily: 'DM Sans, system-ui, sans-serif' }}>
-            Orbit Network grows individuals from beginners into advanced engineers through rigorous learning progression, contribution tracking, and merit-based promotion.
+            Cogniforge grows AI builders from learners to leaders through structured hiring, onboarding, skills progression, and workforce agreements.
           </p>
           <div className="flex items-center justify-center gap-3 flex-wrap">
             <Link href="/login" className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm text-white transition-all duration-200" style={{ background: 'linear-gradient(135deg, #0F6E56 0%, #1D9E75 100%)', fontFamily: 'DM Sans, system-ui, sans-serif', boxShadow: '0 0 20px rgba(15, 110, 86, 0.3)' }}>
@@ -136,9 +134,9 @@ export default function LandingPage() {
             <span className="w-1.5 h-1.5 rounded-full bg-[#BA7517]" />Invite-only membership
           </div>
           <h2 className="text-2xl md:text-3xl font-bold text-[#F5F5F5] mb-4" style={{ fontFamily: 'Syne, system-ui, sans-serif' }}>Ready to evolve?</h2>
-          <p className="text-[#888888] mb-8 leading-relaxed" style={{ fontFamily: 'DM Sans, system-ui, sans-serif' }}>Orbit Network is currently invite-only. If you have been accepted, sign in to access your orbit.</p>
+          <p className="text-[#888888] mb-8 leading-relaxed" style={{ fontFamily: 'DM Sans, system-ui, sans-serif' }}>Cogniforge is currently invite-only. If you have been accepted, sign in to access your hiring workflows and onboarding hub.</p>
           <Link href="/login" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-sm text-white transition-all duration-200" style={{ background: 'linear-gradient(135deg, #0F6E56 0%, #1D9E75 100%)', fontFamily: 'DM Sans, system-ui, sans-serif', boxShadow: '0 0 24px rgba(15, 110, 86, 0.25)' }}>
-            Sign in to Orbit Network <ArrowRight size={14} />
+            Sign in to Cogniforge <ArrowRight size={14} />
           </Link>
         </div>
       </section>
@@ -146,8 +144,8 @@ export default function LandingPage() {
       <footer className="border-t border-[#1E1E1E] py-8">
         <div className="max-w-6xl mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <Hexagon size={13} className="text-[#1D9E75]" />
-            <span className="text-xs text-[#888888]" style={{ fontFamily: 'DM Sans, system-ui, sans-serif' }}>Orbit Network by Sybella Systems Ltd · Kigali, Rwanda</span>
+            <img src="/brand-logo.png" alt="Cogniforge logo" className="w-5 h-5 rounded-lg bg-[#0F6E56]/10 border border-[#0F6E56]/30 object-cover" />
+            <span className="text-xs text-[#888888]" style={{ fontFamily: 'DM Sans, system-ui, sans-serif' }}>Cogniforge by Sybella Systems Ltd · Kigali, Rwanda</span>
           </div>
           <span className="text-xs text-[#444444]" style={{ fontFamily: 'JetBrains Mono, monospace' }}>v1.0.0 · Phase 1</span>
         </div>
