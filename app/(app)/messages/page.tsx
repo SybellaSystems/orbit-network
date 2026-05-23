@@ -29,7 +29,15 @@ export default function MessagesPage() {
   }, [member]);
 
   async function loadMessages() {
-    const { data } = await supabase.from('messages').select('*, sender:members(*)').eq('channel_id', activeChannel).order('sent_at', { ascending: true }).limit(50);
+   const { data } = await supabase
+  .from('messages')
+  .select(`
+    *,
+    sender:members!messages_sender_id_fkey(*)
+  `)
+  .eq('channel_id', activeChannel)
+  .order('sent_at', { ascending: true })
+  .limit(50);
     setMessages(data ?? []);
   }
 
