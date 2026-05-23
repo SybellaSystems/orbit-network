@@ -61,11 +61,18 @@ CREATE TABLE IF NOT EXISTS public.documents (
 CREATE INDEX IF NOT EXISTS idx_documents_member ON public.documents(member_id);
 CREATE INDEX IF NOT EXISTS idx_agreement_acceptances_member ON public.agreement_acceptances(member_id);
 
--- Create Supabase storage bucket for documents if it does not exist
+-- Create Supabase storage bucket for documents if it does not exist and if storage functions are available
 DO $$
 BEGIN
-  IF NOT EXISTS (SELECT 1 FROM storage.buckets WHERE name = 'documents') THEN
-    PERFORM storage.create_bucket('documents', FALSE);
+  IF EXISTS (
+    SELECT 1 FROM pg_proc p
+      JOIN pg_namespace n ON p.pronamespace = n.oid
+    WHERE n.nspname = 'storage'
+      AND p.proname = 'create_bucket'
+  ) THEN
+    IF NOT EXISTS (SELECT 1 FROM storage.buckets WHERE name = 'documents') THEN
+      EXECUTE 'SELECT storage.create_bucket($1, $2)' USING 'documents', FALSE;
+    END IF;
   END IF;
 END$$;
 
