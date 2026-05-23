@@ -5,6 +5,10 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Orbit Network — Learn. Build. Contribute. Evolve.',
   description: 'A structured AI builder ecosystem that grows individuals from beginners into advanced engineers through learning progression, contribution tracking, and skill-based promotions.',
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png'
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
