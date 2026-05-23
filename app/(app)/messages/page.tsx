@@ -16,7 +16,7 @@ const CHANNELS: { id: string; label: string; orbit?: OrbitType }[] = [
 export default function MessagesPage() {
   const { member } = useAuth();
   const [activeChannel, setActiveChannel] = useState('general');
-  const [messages, setMessages] = useState<(Message & { sender?: Member })[]>([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [members, setMembers] = useState<Member[]>([]);
   const [content, setContent] = useState('');
   const [sending, setSending] = useState(false);
@@ -29,15 +29,7 @@ export default function MessagesPage() {
   }, [member]);
 
   async function loadMessages() {
-   const { data } = await supabase
-  .from('messages')
-  .select(`
-    *,
-    sender:members!messages_sender_id_fkey(*)
-  `)
-  .eq('channel_id', activeChannel)
-  .order('sent_at', { ascending: true })
-  .limit(50);
+    const { data } = await supabase.from('messages').select('*, sender:members(*)').eq('channel_id', activeChannel).order('sent_at', { ascending: true }).limit(50);
     setMessages(data ?? []);
   }
 
