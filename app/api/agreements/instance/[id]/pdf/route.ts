@@ -70,9 +70,9 @@ export async function GET(req: Request, ctx: { params: { id: string } }) {
 
   // Generate PDF bytes with pdfkit (server-side)
   const doc = new PDFKit({ size: 'A4', margin: 50 });
-  const chunks: Buffer[] = [];
+  const chunks: Uint8Array[] = [];
 
-  doc.on('data', (c: Buffer) => chunks.push(c));
+  doc.on('data', (c: Uint8Array) => chunks.push(c));
 
   const signatureDate =
   'signed_at' in instance && instance.signed_at
@@ -189,7 +189,7 @@ export async function GET(req: Request, ctx: { params: { id: string } }) {
 
   // FIX (TS2345): toUint8Array copies into a plain ArrayBuffer to satisfy
   // Uint8Array<ArrayBuffer> — avoids SharedArrayBuffer incompatibility.
-  const pdfBuf = Buffer.concat(chunks);
+const pdfBuf = Buffer.concat(chunks);
 
   // Upload to Supabase Storage
   const fileName = `agreement_${instanceId}_${Date.now()}.pdf`;
